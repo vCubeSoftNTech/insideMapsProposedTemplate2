@@ -18,13 +18,18 @@
         var app = angular.module('InsideMapsData', ['ui.bootstrap']);
         app.controller('MainCtrl', function($scope) {
             console.log("Loaded");
+
+            $scope.floorPlanImageSelected = function($index){
+              console.log("Clicked");
+              console.log($index);
+            }
             $scope.slides = [{
                     image: './img/1.jpg',
-                    text: "Granite Shoals"
+                    text: "Bedroom1"
                 },
                 {
                     image: './img/2.jpg',
-                    text: "Shoals Granite"
+                    text: "Master Bedroom"
                 },
                 {
                     image: './img/3.jpg',
@@ -94,19 +99,21 @@
         height: 36px;
         text-align: center;
         vertical-align: middle;
-        font-size: 20px;
+        font-size: 24px;
     }
     .main-menu:hover,
     nav.main-menu.expanded {
-        width: 250px;
-        overflow: visible;
+        width: 200px;
+        border-bottom: 3px solid red;
+        /*overflow: hidden;*/
     }
     .main-menu {
-        background: #fbfbfb;
+        background: linear-gradient(to bottom, rgba(45, 38, 28, 1) 0%, #6b6151 20%, #8b7960 43%, rgba(76, 64, 44, .90) 75%, rgba(121, 114, 100, .5) 100%);
         border-right: 1px solid #e5e5e5;
-        position: absolute;
-        top: 0;
-        bottom: 0;
+        color: #fff;
+        position: fixed;
+        top: 13.1%;
+        bottom: 13%;
         height: 100%;
         left: 0;
         width: 60px;
@@ -114,7 +121,7 @@
         -webkit-transition: width .05s linear;
         transition: width .05s linear;
         -webkit-transform: translateZ(0) scale(1, 1);
-        z-index: 1000;
+        z-$index: 1000;
     }
     .main-menu>ul {
         margin: 7px 0;
@@ -137,6 +144,9 @@
         -webkit-transition: all .1s linear;
         transition: all .1s linear;
     }
+    .main-menu li>a>i {
+        border: 3-x solid red;
+    }
     .main-menu .nav-icon {
         position: relative;
         display: table-cell;
@@ -152,11 +162,6 @@
         vertical-align: middle;
         width: 190px;
         font-family: 'Titillium Web', sans-serif;
-    }
-    .main-menu>ul.logout {
-        position: absolute;
-        left: 0;
-        bottom: 0;
     }
     .no-touch .scrollable.hover {
         overflow-y: hidden;
@@ -191,8 +196,9 @@
     .dropdown-menu>.active>a:focus,
     .no-touch .dashboard-page nav.dashboard-menu ul li:hover a,
     .dashboard-page nav.dashboard-menu ul li.active a {
-        color: #fff;
-        background-color: #5fa2db;
+        color: #ffffff;
+        background-color: transparent;
+        font-weight: bold;
     }
     .area {
         float: left;
@@ -206,34 +212,170 @@
         font-weight: 300;
         src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
     }
+    /*Custom CSS*/
+    /*.background-header{
+
+    }*/
+    .header {
+        color: #e2dcd5;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #9b8b76), color-stop(63%, #554936), color-stop(93%, #554d3b), color-stop(93.01%, rgba(0, 0, 0, .4)), color-stop(100%, rgba(0, 0, 0, 0)));
+        background-size: 100% 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 14.1%;
+        /*z-$index: 60;*/
+    }
+    .header-left {
+        position: absolute;
+        left: 1.5%;
+        right: 50%;
+        bottom: 18%;
+    }
+    .heading {
+        color: #c3bbb1;
+        font-family: 'Trajan W01 Regular';
+        font-size: 21px;
+        font-variant: small-caps;
+    }
+    .subtitle {
+        color: #ceba9d;
+    }
+    .heading-right {
+        color: #e2dcd5;
+        font-family: 'Trajan W01 Regular';
+        font-variant: small-caps;
+        font-size: 21px;
+        text-align: right;
+    }
+    .floorpanelimage-selected img{
+        width: 75px;
+        height: 75px;
+        -webkit-transition: width 2s ease-in 2s; /* Safari */
+        transition: width 2s ease-in 2s;
+        z-$index: 2;
+        border: 2px solid #fff;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    }
     </style>
 </head>
 
 <body>
     <div ng-app="InsideMapsData">
         <div ng-controller="MainCtrl">
+            <div class="header background-header">
+                <div class="header-left">
+                    <div class="heading">Magnificent Spanish Mediterranean Home ~ $2,548,000</div>
+                    <span class="subtitle" style="text-transform: uppercase;">2112 Adeline Drive, Burlingame, CA 94010 &nbsp;|&nbsp;MLS #81433218 &nbsp;|&nbsp; VIRTUAL TOUR #1722089</span>
+                </div>
+                <div style="opacity: 1;">
+                    <img src="https://tours.tourfactory.com/tours/media/user/00/00/07/35/51/User73551_132_198.jpg" style="margin: 10px 15px; width: 44.8103px; height: 67.252px; top: 7px; right: 15px; cursor: pointer; float: right">
+
+                    <div class="" style="right: 76px; float: right">
+                        <div class="heading-right"><span style="cursor: pointer;">InsideMaps Inc</span></div>
+                        <div class="heading-right"><span style="cursor: pointer;">+1 415-819-9879</span></div>
+                        <div><span class="subtitle" style="cursor: pointer;">InsideMaps Corporate Headquarters</span></div>
+                    </div>
+                </div>
+            </div>
+
             <nav class="main-menu">
                 <ul>
-                  <li><a href="#"><i class="fa fa-home fa-2x"></i><span class="nav-text">PROPERTY INFO</span></a></li>
-                    <li class="has-subnav"><a href="#"><i class="fa fa-envelope fa-2x"></i><span class="nav-text">SEND TO A FRIEND</span></a></li>
-                    <li class="has-subnav"><a href="#"><i class="fa fa-print fa-2x"></i><span class="nav-text">PRINT MATERILAS</span></a></li>
-                    <li class="has-subnav"><a href="#"><i class="fa fa-paperclip fa-2x"></i><span class="nav-text">ATTACHMENTS</span></a></li>
+                    <!-- <li><i class="fa fa-home fa-2x"></i></li>
+                  <li><i class="fa fa-envelope fa-2x"></i></li>
+                  <li><i class="fa fa-print fa-2x"></i></li>
+                  <li><i class="fa fa-paperclip fa-2x"></i></li>
+                  <li><i class="fa fa-compass fa-2x"></i></li>
+                  <li><i class="fa fa-calculator fa-2x"></i></li>
+                  <li><i class="fa fa-apple fa-2x"></i></li>
+                  <li><i class="fa fa-info fa-2x"></i></li> -->
+
+                    <li><a href="#"><i class="fa fa-home fa-2x"></i><span class="nav-text">PROPERTY INFO</span></a></li>
+                    <li><a href="#"><i class="fa fa-envelope fa-2x"></i><span class="nav-text">SEND TO A FRIEND</span></a></li>
+                    <li><a href="#"><i class="fa fa-print fa-2x"></i><span class="nav-text">PRINT MATERILAS</span></a></li>
+                    <li><a href="#"><i class="fa fa-paperclip fa-2x"></i><span class="nav-text">ATTACHMENTS</span></a></li>
                     <li><a href="#"><i class="fa fa-compass fa-2x"></i><span class="nav-text">PROPERTY MAP</span></a></li>
                     <li><a href="#"><i class="fa fa-calculator fa-2x"></i><span class="nav-text">CALCULATOR</span></a></li>
                     <li><a href="#"><i class="fa fa-apple fa-2x"></i><span class="nav-text">SCHOOL INFO</span></a></li>
                     <li><a href="#"><i class="fa fa-info fa-2x"></i><span class="nav-text">CONTACT</span></a></li>
                 </ul>
             </nav>
+            <div class="">
+                <!-- <div class="viewer viewercatch noselect" style="overflow: visible; width: 1443px; height: 508px; left: 52px; top: 72px; cursor: default;" id="divViewer">
+                    <img src="https://tours.tourfactory.com/tours/tour6/tour6_namebg.png" class="scenetextshadow viewercatch" style="right: 136px; cursor: default;">
+                    <div class="scenetext viewercatch" style="right: 179px; cursor: default;">
+                        <div id="sSceneName" class="scenename trajen fsize" tf-fsize="22" tf-fsize-oneline="true" style="font-size: 24px; line-height: 24px;">Staircase</div>
+                        <div class="fsize" tf-fsize="8" style="font-size: 9px; line-height: 9px;">&nbsp;</div>
+                        <div class="scenedescription fsize" tf-fsize="13" style="font-size: 14px; line-height: 14px;"></div>
+                    </div>
 
-            <div class="area">DFDFD JLFKJLKDJLKDJLKDJLDKJLDJ</div>
+                    <div class="floorpaneledgeleft" style="width: 18px;"></div>
+                    <div style="position: absolute; transform: translate3d(135.5px, 0px, 0.01px);">
+                        <div class="stripdiv" style="position: absolute; overflow: hidden; width: 1172px; height: 782px; transform: translate3d(0px, -137px, 0.01px); z-$index: 2;">
+                            <img src="https://tours.tourfactory.com/tours/media/scene/big4/00/40/99/44/40994491.jpg" style="transform: translate3d(-313px, -209px, 0.01px) scale3d(0.651835, 0.651667, 1) rotateZ(0.01deg); opacity: 1;">
+                        </div>
+                        <div class="stripdiv" style="position: absolute; overflow: hidden; display: block; width: 1172px; height: 782px; z-$index: 1; transform: translate3d(-2615px, -137px, 0.01px);">
+                            <div class="hover" style="opacity: 0.7; display: block;"></div>
+                            <img src="https://tours.tourfactory.com/tours/media/scene/big4/00/40/99/44/40994475.jpg" style="transform: translate3d(-223.16px, -213.61px, 0.01px) scale3d(0.829176, 0.829088, 1) rotateZ(0.01deg); opacity: 1; display: none;">
+                            <img src="https://tours.tourfactory.com/tours/media/scene/big4/00/40/99/44/40994476.jpg" style="opacity: 1; display: none; transform: translate3d(-160.89px, -345px, 0.01px) scale3d(0.898716, 0.899106, 1) rotateZ(0.01deg);">
+                            <img src="https://tours.tourfactory.com/tours/media/scene/big4/00/40/99/44/40994477.jpg" style="transform: translate3d(-169.04px, -348.93px, 0.01px) scale3d(0.898595, 0.898984, 1) rotateZ(0.01deg); opacity: 1; display: none;">
+                            <img src="https://tours.tourfactory.com/tours/media/scene/big4/00/40/99/44/40994478.jpg" style="transform: translate3d(-204.28px, -307.03px, 0.01px) scale3d(0.898704, 0.899094, 1) rotateZ(0.01deg); opacity: 1; display: none;">
+                            <img src="https://tours.tourfactory.com/tours/media/scene/big4/00/40/99/44/40994479.jpg" style="transform: translate3d(-197.37px, -373.82px, 0.01px) scale3d(0.902156, 0.902366, 1) rotateZ(0.01deg); opacity: 1; display: none;">
+                            <img src="https://tours.tourfactory.com/tours/media/scene/big4/00/40/99/44/40994480.jpg" style="transform: translate3d(-204.92px, -357.85px, 0.01px) scale3d(0.898583, 0.898972, 1) rotateZ(0.01deg); opacity: 1; display: none;">
+                            <img src="https://tours.tourfactory.com/tours/media/scene/big4/00/40/99/44/40994481.jpg" style="transform: translate3d(-167.66px, -382.74px, 0.01px) scale3d(0.898704, 0.899094, 1) rotateZ(0.01deg); opacity: 1; display: none;">
+                            <img src="https://tours.tourfactory.com/tours/media/scene/big4/00/40/99/44/40994482.jpg" style="transform: translate3d(-164.71px, -352.43px, 0.01px) scale3d(0.895544, 0.895919, 1) rotateZ(0.01deg); opacity: 1; display: none;">
+                            <img src="https://tours.tourfactory.com/tours/media/scene/big4/00/40/99/44/40994483.jpg" style="transform: translate3d(-188.68px, -334.19px, 0.01px) scale3d(0.888293, 0.888634, 1) rotateZ(0.01deg); opacity: 1; display: none;">
+                            <img src="https://tours.tourfactory.com/tours/media/scene/big4/00/40/99/44/40994484.jpg" style="transform: translate3d(-155.48px, -373.53px, 0.01px) scale3d(0.898607, 0.898996, 1) rotateZ(0.01deg); opacity: 1; display: none;">
+                            <img src="https://tours.tourfactory.com/tours/media/scene/big4/00/40/99/44/40994485.jpg" style="transform: translate3d(-169.83px, -349.55px, 0.01px) scale3d(0.889576, 0.889923, 1) rotateZ(0.01deg); opacity: 1; display: none;">
+                            <img src="https://tours.tourfactory.com/tours/media/scene/big4/00/40/99/44/40994486.jpg" style="transform: translate3d(-192.03px, -347.19px, 0.01px) scale3d(0.890216, 0.890567, 1) rotateZ(0.01deg); opacity: 1; display: none;">
+                            <img src="https://tours.tourfactory.com/tours/media/scene/big4/00/40/99/44/40994487.jpg" style="transform: translate3d(-177.18px, -379.68px, 0.01px) scale3d(0.890858, 0.891211, 1) rotateZ(0.01deg); opacity: 1; display: none;">
+                            <img src="https://tours.tourfactory.com/tours/media/scene/big4/00/40/99/44/40994488.jpg" style="transform: translate3d(-196px, -381.54px, 0.01px) scale3d(0.891489, 0.891845, 1) rotateZ(0.01deg); opacity: 1; display: none;">
+                            <img src="https://tours.tourfactory.com/tours/media/scene/big4/00/40/99/44/40994489.jpg" style="transform: translate3d(-200.55px, -373.02px, 0.01px) scale3d(0.892129, 0.892489, 1) rotateZ(0.01deg); opacity: 1; display: none;">
+                            <img src="https://tours.tourfactory.com/tours/media/scene/big4/00/40/99/44/40994490.jpg" style="transform: translate3d(-313px, -209px, 0.01px) scale3d(0.651835, 0.651667, 1) rotateZ(0.01deg); opacity: 1; display: inline;">
+                        </div>
+                        <div class="stripdiv" style="position: absolute; overflow: hidden; background: rgb(0, 0, 0); transform: translate3d(2615px, -137px, 0.01px); display: block; width: 1172px; height: 782px; z-$index: 3; opacity: 0.986;">
+                            <div class="hover" style="opacity: 0.7; display: block;"></div>
+                            <img src="https://tours.tourfactory.com/tours/media/scene/big4/00/40/99/44/40994492.jpg" style="transform: translate3d(-313px, -209px, 0.01px) scale3d(0.651835, 0.651667, 1) rotateZ(0.01deg); opacity: 1;"></div>
+                        <div style="position: absolute; background: rgb(0, 0, 0); z-$index: 2; overflow: hidden; width: 1px; height: 1px;">
+                            <div style="position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px;">
+                                <div id="idVideoMessage" class="trajen" style="position: absolute; left: 0; right: 0; bottom: 50%; text-align: center; color: #ccc; text-shadow: 0px 0px 10px #000000, 0px 0px 20px #000000;">
+                                </div>
+                            </div>
+                            <div id="jp_jplayer_0" style="position: absolute; top: 0px; left: 0px; z-$index: 100; width: 640px; height: 360px;">
+                                <img id="jp_poster_0" style="width: 640px; height: 360px; display: none;">
+                                <video id="jp_video_0" preload="auto" src="https://media.tourfactory.com/video/w640/00/00/01/25/12590.mp4" style="width: 0px; height: 0px;"></video>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
 
+                <div class="">
+                    <table class="" style="position: relative; top: 100px; left: 0px; float: right">
+                        <tbody>
+                            <tr>
+                                <td style="position: relative;">
+                                    <!-- <img src="http://theme.tourfactory.com/file/ffffffff/00000033/728.png" style="display: inline; width: 360px; height: 366px;"> -->
+                                    <img src="img/fp2.png" style="display: inline; width: 360px; height: auto;">
 
-            <footer>
-              <h1>HHHHHHHHHHH</h1>
-            </footer>
-            <!-- <div ng-repeat="slide in slides">
-            <h2>{{slide.text}}</h2>
-          </div> -->
+                                    <span ng-class="floorpanelimage-selected" ng-repeat="slide in slides">
+                                        <img ng-src="{{slide.image}}" ng-click="floorPlanImageSelected($index)" width="48" height="48" style="position: absolute; top: 236px; left: 172px; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px; overflow: hidden;"></img>
+                                    <!-- <img src="https://tours.tourfactory.com/tours/media/scene/40994478_80_80.jpg" ng-click="floorPlanImageSelected($index)" class="" style="position: absolute; top: 236px; left: 142px; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px; overflow: hidden;">
+                                    <img src="https://tours.tourfactory.com/tours/media/scene/40994480_80_80.jpg" ng-click="floorPlanImageSelected($index)" class="" style="position: absolute; top: 188px; left: 138px; width: 48px; height: 48px; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px;">
+                                    <img src="https://tours.tourfactory.com/tours/media/scene/40994481_80_80.jpg" ng-click="floorPlanImageSelected($index)" class="" style="position: absolute; top: 134px; left: 139px; width: 48px; height: 48px; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px; overflow: hidden;">
+                                    <img src="https://tours.tourfactory.com/tours/media/scene/40994487_80_80.jpg" ng-click="floorPlanImageSelected($index)" class="" style="position: absolute; top: 46px; left: 192px; width: 48px; height: 48px; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px;">
+                                    <img src="https://tours.tourfactory.com/tours/media/scene/40994485_80_80.jpg" ng-click="floorPlanImageSelected($index)" class="" style="position: absolute; top: 97px; left: 215px; width: 48px; height: 48px; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px;">
+                                    <img src="https://tours.tourfactory.com/tours/media/scene/40994488_80_80.jpg" ng-click="floorPlanImageSelected($index)" class="" style="position: absolute; top: 198px; left: 233px; width: 48px; height: 48px; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px;">
+                                    <img src="https://tours.tourfactory.com/tours/media/scene/40994500_80_80.jpg" ng-click="floorPlanImageSelected($index)" class="" style="position: absolute; top: 294px; left: 205px; width: 48px; height: 48px; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px;">
+                                    <img src="https://tours.tourfactory.com/tours/media/scene/40994483_80_80.jpg" ng-click="floorPlanImageSelected($index)" class="" style="position: absolute; top: 81px; left: 143px; width: 48px; height: 48px; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px;"> -->
+
+                                  </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </body>
