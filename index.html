@@ -89,7 +89,7 @@
         });
     </script>
     <style>
-        body,
+    body,
         html {
             height: 100%;
         }
@@ -255,16 +255,19 @@
         text-align: right;
     }
     .floor-plan-selected {
-        width: 65px;
-        height: 65px;
-        -webkit-transition: width height 2s;
+        /*width: 65px;
+        height: 65px;*/
+        -webkit-transform: scale(1.65, 1.65);
+        -ms-transform: scale(1.65, 1.65);
+        transform: scale(1.65, 1.65);
+        transition-duration: 0.9s;
+        -webkit-transition-duration: 0.9s;
         /* Safari */
 
+        /*-webkit-transition: width height 2s;
         transition: width height 2s;
         -webkit-transition-timing-function: linear;
-        /* Safari */
-
-        transition-timing-function: linear;
+        transition-timing-function: linear;*/
         /* Safari */
 
         z-$index: 2;
