@@ -17,43 +17,57 @@
     <script>
         var app = angular.module('InsideMapsData', ['ui.bootstrap']);
         app.controller('MainCtrl', function($scope) {
-            console.log("Loaded");
 
-            $scope.floorPlanImageSelected = function($index){
-              console.log("Clicked");
-              console.log($index);
+            $scope.floorPlanImageSelected = function($index) {
+                $scope.selectedIndex = $index;
             }
             $scope.slides = [{
                     image: './img/1.jpg',
-                    text: "Bedroom1"
+                    text: "Bedroom1",
+                    top: "320px",
+                    left: "185px"
                 },
                 {
                     image: './img/2.jpg',
-                    text: "Master Bedroom"
+                    text: "Bedroom2",
+                    top: "215px",
+                    left: "180px"
                 },
                 {
                     image: './img/3.jpg',
-                    text: "Mendis Lane"
+                    text: "Master Bedroom",
+                    top: "135px",
+                    left: "195px"
                 },
                 {
                     image: './img/4.jpg',
-                    text: "Street Gate"
+                    text: "Kitchen",
+                    top: "75px",
+                    left: "250px"
                 },
                 {
                     image: './img/5.jpg',
-                    text: "California"
+                    text: "Dining Room",
+                    top: "130px",
+                    left: "295px"
                 },
                 {
                     image: './img/6.jpg',
-                    text: "Arizoana 12989"
+                    text: "Living Room",
+                    top: "325px",
+                    left: "300px"
                 },
                 {
                     image: './img/7.jpg',
-                    text: "Boston 89822"
+                    text: "Office Room",
+                    top: "470px",
+                    left: "270px"
                 },
                 {
                     image: './img/8.jpg',
-                    text: "Arizoana Lane"
+                    text: "Entry",
+                    top: "225px",
+                    left: "295px"
                 },
                 {
                     image: './img/9.jpg',
@@ -75,12 +89,6 @@
         });
     </script>
     <style>
-    /*body {
-      font: 20px Montserrat, sans-serif;
-      line-height: 1.8;
-      color: #f5f6f7;
-  }*/
-
         body,
         html {
             height: 100%;
@@ -213,9 +221,6 @@
         src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
     }
     /*Custom CSS*/
-    /*.background-header{
-
-    }*/
     .header {
         color: #e2dcd5;
         background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #9b8b76), color-stop(63%, #554936), color-stop(93%, #554d3b), color-stop(93.01%, rgba(0, 0, 0, .4)), color-stop(100%, rgba(0, 0, 0, 0)));
@@ -249,11 +254,19 @@
         font-size: 21px;
         text-align: right;
     }
-    .floorpanelimage-selected img{
-        width: 75px;
-        height: 75px;
-        -webkit-transition: width 2s ease-in 2s; /* Safari */
-        transition: width 2s ease-in 2s;
+    .floor-plan-selected {
+        width: 65px;
+        height: 65px;
+        -webkit-transition: width height 2s;
+        /* Safari */
+
+        transition: width height 2s;
+        -webkit-transition-timing-function: linear;
+        /* Safari */
+
+        transition-timing-function: linear;
+        /* Safari */
+
         z-$index: 2;
         border: 2px solid #fff;
         box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
@@ -282,15 +295,6 @@
 
             <nav class="main-menu">
                 <ul>
-                    <!-- <li><i class="fa fa-home fa-2x"></i></li>
-                  <li><i class="fa fa-envelope fa-2x"></i></li>
-                  <li><i class="fa fa-print fa-2x"></i></li>
-                  <li><i class="fa fa-paperclip fa-2x"></i></li>
-                  <li><i class="fa fa-compass fa-2x"></i></li>
-                  <li><i class="fa fa-calculator fa-2x"></i></li>
-                  <li><i class="fa fa-apple fa-2x"></i></li>
-                  <li><i class="fa fa-info fa-2x"></i></li> -->
-
                     <li><a href="#"><i class="fa fa-home fa-2x"></i><span class="nav-text">PROPERTY INFO</span></a></li>
                     <li><a href="#"><i class="fa fa-envelope fa-2x"></i><span class="nav-text">SEND TO A FRIEND</span></a></li>
                     <li><a href="#"><i class="fa fa-print fa-2x"></i><span class="nav-text">PRINT MATERILAS</span></a></li>
@@ -355,21 +359,33 @@
                         <tbody>
                             <tr>
                                 <td style="position: relative;">
-                                    <!-- <img src="http://theme.tourfactory.com/file/ffffffff/00000033/728.png" style="display: inline; width: 360px; height: 366px;"> -->
-                                    <img src="img/fp2.png" style="display: inline; width: 360px; height: auto;">
+                                    <img src="http://theme.tourfactory.com/file/ffffffff/00000033/728.png" style="display: inline; width: 475px; height: auto;">
+                                    <!-- <img src="img/fp2.png" style="display: inline; width: 360px; height: auto;"> -->
 
-                                    <span ng-class="floorpanelimage-selected" ng-repeat="slide in slides">
-                                        <img ng-src="{{slide.image}}" ng-click="floorPlanImageSelected($index)" width="48" height="48" style="position: absolute; top: 236px; left: 172px; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px; overflow: hidden;"></img>
-                                    <!-- <img src="https://tours.tourfactory.com/tours/media/scene/40994478_80_80.jpg" ng-click="floorPlanImageSelected($index)" class="" style="position: absolute; top: 236px; left: 142px; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px; overflow: hidden;">
-                                    <img src="https://tours.tourfactory.com/tours/media/scene/40994480_80_80.jpg" ng-click="floorPlanImageSelected($index)" class="" style="position: absolute; top: 188px; left: 138px; width: 48px; height: 48px; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px;">
-                                    <img src="https://tours.tourfactory.com/tours/media/scene/40994481_80_80.jpg" ng-click="floorPlanImageSelected($index)" class="" style="position: absolute; top: 134px; left: 139px; width: 48px; height: 48px; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px; overflow: hidden;">
-                                    <img src="https://tours.tourfactory.com/tours/media/scene/40994487_80_80.jpg" ng-click="floorPlanImageSelected($index)" class="" style="position: absolute; top: 46px; left: 192px; width: 48px; height: 48px; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px;">
-                                    <img src="https://tours.tourfactory.com/tours/media/scene/40994485_80_80.jpg" ng-click="floorPlanImageSelected($index)" class="" style="position: absolute; top: 97px; left: 215px; width: 48px; height: 48px; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px;">
-                                    <img src="https://tours.tourfactory.com/tours/media/scene/40994488_80_80.jpg" ng-click="floorPlanImageSelected($index)" class="" style="position: absolute; top: 198px; left: 233px; width: 48px; height: 48px; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px;">
-                                    <img src="https://tours.tourfactory.com/tours/media/scene/40994500_80_80.jpg" ng-click="floorPlanImageSelected($index)" class="" style="position: absolute; top: 294px; left: 205px; width: 48px; height: 48px; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px;">
-                                    <img src="https://tours.tourfactory.com/tours/media/scene/40994483_80_80.jpg" ng-click="floorPlanImageSelected($index)" class="" style="position: absolute; top: 81px; left: 143px; width: 48px; height: 48px; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px;"> -->
-
-                                  </span>
+                                    <span ng-repeat="slide in slides | filter: 'Bedroom1'">
+                                        <img ng-class="{ 'floor-plan-selected': $index == selectedIndex }" ng-src="{{slide.image}}" ng-click="floorPlanImageSelected($index)" width="55" height="55" ng-style="{'top': slide.top, 'left': slide.left}" style="position: absolute; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px; overflow: hidden;"></img>
+                                    </span>
+                                    <span ng-repeat="slide in slides | filter: 'Bedroom2'">
+                                        <img ng-class="{ 'floor-plan-selected': $index+1 == selectedIndex }" ng-src="{{slide.image}}" ng-click="floorPlanImageSelected($index+1)" width="55" height="55" ng-style="{'top': slide.top, 'left': slide.left}" style="position: absolute; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px; overflow: hidden;"></img>
+                                    </span>
+                                    <span ng-repeat="slide in slides | filter: 'Master Bedroom'">
+                                          <img ng-class="{ 'floor-plan-selected': $index+2 == selectedIndex }" ng-src="{{slide.image}}" ng-click="floorPlanImageSelected($index+2)" width="55" height="55" ng-style="{'top': slide.top, 'left': slide.left}" style="position: absolute; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px; overflow: hidden;"></img>
+                                      </span>
+                                    <span ng-repeat="slide in slides | filter: 'Entry'">
+                                            <img ng-class="{ 'floor-plan-selected': $index+3 == selectedIndex }" ng-src="{{slide.image}}" ng-click="floorPlanImageSelected($index+3)" width="55" height="55" ng-style="{'top': slide.top, 'left': slide.left}" style="position: absolute; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px; overflow: hidden;"></img>
+                                        </span>
+                                    <span ng-repeat="slide in slides | filter: 'Dining Room'">
+                                            <img ng-class="{ 'floor-plan-selected': $index+4 == selectedIndex }" ng-src="{{slide.image}}" ng-click="floorPlanImageSelected($index+4)" width="55" height="55" ng-style="{'top': slide.top, 'left': slide.left}" style="position: absolute; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px; overflow: hidden;"></img>
+                                        </span>
+                                    <span ng-repeat="slide in slides | filter: 'Living Room'">
+                                            <img ng-class="{ 'floor-plan-selected': $index+5 == selectedIndex }" ng-src="{{slide.image}}" ng-click="floorPlanImageSelected($index+5)" width="55" height="55" ng-style="{'top': slide.top, 'left': slide.left}" style="position: absolute; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px; overflow: hidden;"></img>
+                                        </span>
+                                    <span ng-repeat="slide in slides | filter: 'Office Room'">
+                                            <img ng-class="{ 'floor-plan-selected': $index+6 == selectedIndex }" ng-src="{{slide.image}}" ng-click="floorPlanImageSelected($index+6)" width="55" height="55" ng-style="{'top': slide.top, 'left': slide.left}" style="position: absolute; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px; overflow: hidden;"></img>
+                                        </span>
+                                    <span ng-repeat="slide in slides | filter: 'Kitchen'">
+                                            <img ng-class="{ 'floor-plan-selected': $index+7 == selectedIndex }" ng-src="{{slide.image}}" ng-click="floorPlanImageSelected($index+7)" width="55" height="55" ng-style="{'top': slide.top, 'left': slide.left}" style="position: absolute; cursor: pointer; border-radius: 48px; margin-left: -24px; margin-top: -24px; overflow: hidden;"></img>
+                                        </span>
                                 </td>
                             </tr>
                         </tbody>
